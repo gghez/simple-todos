@@ -1,8 +1,6 @@
 
-// At the top of our client code
 Meteor.subscribe("tasks");
 
-// Replace the existing Template.body.helpers
 Template.body.helpers({
     tasks: function () {
         if (Session.get("hideCompleted")) {
@@ -16,13 +14,13 @@ Template.body.helpers({
     hideCompleted: function () {
         return Session.get("hideCompleted");
     },
-    // Add to Template.body.helpers
+
     incompleteCount: function () {
         return Tasks.find({checked: {$ne: true}}).count();
     }
 });
 
-// Inside the if (Meteor.isClient) block, right after Template.body.helpers:
+
 Template.body.events({
     "submit .new-task": function (event) {
         // This function is called when the new task form is submitted
